@@ -1,0 +1,13 @@
+.search_container{
+    width : 70%;
+    height: 15rem;
+    background-color: #CCCAE1 ;
+    border-radius: 100px;
+    margin: 0 auto;
+    padding : 1.5rem 2.5rem;
+}
+
+.search_title{
+    font-size: 35px;
+    margin-left: 10px;
+}

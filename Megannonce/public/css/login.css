@@ -1,0 +1,89 @@
+body{
+    margin: 0 auto;
+}
+
+.formulaire{
+    background-color: #CCCAE1;
+    width: 40%;
+    height: 355px;
+    border-radius: 60px;
+    margin: auto;
+    padding: 20px;
+}
+
+.formulaire form{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.formulaire input{
+    background-color: #E6E6E6;
+    border-radius: 15px;
+    height: 30px;
+    width: 70%;
+    border: 2px #E6E6E6 solid;
+    outline: none;
+    padding: 13px 20px;
+    margin: 0px 0 20px 80px;
+    font-size: 30px;
+    font-family: Open Sans;
+    color: #414BB2;
+    font-weight: bold;
+    max-height: 80px;
+    
+}
+
+.buttons-box{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80%;
+    left:42%; /* poussé de la moitié de hauteur du référent */
+    transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    height: 330px;
+}
+
+.div_test{
+    display: flex;
+    flex-direction: column;
+    position:initial;
+}
+
+.content{
+    margin-top:35px;
+    font-size: 60px;
+    font-weight: bold;
+    font-family: Open Sans;
+    color : #2B3564;
+}
+
+i{
+    font-size: 40px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.label{
+    font-size: 35px;
+    margin: 15px 0 5px 15px;
+    color: #515151;
+}
+
+input:focus{
+    border: 2px #DD0453 solid;
+}
+
+.passwordField{
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

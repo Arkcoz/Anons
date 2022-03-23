@@ -1,0 +1,194 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if app.user == user %}
+        Anons - Mon Profil
+    {% else %}
+        {% if user != null %}
+            Anons - {{user.getPrenom()}} {{user.getNom()}} 
+        {% else %}
+            Anons - Profil introuvable
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="css/button.css" rel="stylesheet"/>
+    <link href="css/profil.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    {% if user != null %}
+        <h1>Profil de {{user.getPrenom()}} {{user.getNom()}}</h1>
+        <div class="informations_profil">
+            <div class="part_img">
+                {% if user.getImage() != null %}
+                    <img src="/uploads/{{user.getImage().getName()}}" alt="image profil">
+                {% else %}
+                    <img src="image/icon_default_user.png" alt="image profil par défault">
+                {% endif %}
+            </div>
+
+            <div class="part_contact">
+                <div class="row row_contact">
+                    <div class="icon_contact">
+                        <img src="image/icon_phone.svg" alt="icon phone">
+                    </div>
+                    <div class="content_contact">
+                        0{{user.getPhone()}}
+                    </div>
+                </div>
+                <div class="row row_contact">
+                    <div class="icon_contact">
+                        <img src="image/icon_email.svg" alt="icon email">
+                    </div>
+                    <div class="content_contact">
+                        {{user.getEmail()}}
+                    </div>
+                </div>
+                <div class="row row_createdAt">
+                    Membre depuis {{user.getCreatedAt() | date('Y')}}
+                </div>
+            </div>
+        </div>
+
+
+        {% if app.user == user %}
+            <div class="div-button">
+                <a class="btn-icon" href="{{ path ('modify_profil')}}">
+                    <div class="btn-box-icon modifier-profil">
+                        <img src="image/icon_modify.svg" alt="icon modify">
+                        <div class="btn-content">
+                            Modifier le profil
+                        </div> 
+                    </div>
+                </a>
+            </div>
+        {% else %}
+            <!-- METTRE UN POP UP AVEC NUM ET MAIL -->
+            <div class="div-button envoyer-message">
+                <a class="btn-icon" href="#">
+                    <div class="btn-box-icon envoyer-message">
+                        <img src="image/icon_tchat.svg" alt="icon tchat">
+                        <div class="btn-content">
+                            Envoyer un message
+                        </div> 
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+
+        
+            <div class="annonce_part">
+                <div class="cadre_annonces">
+                    <div class="header_annonces">
+                        <div class="box_title_annonce">
+                            <div class="box_title_content">
+                                Les annonces de {{user.getPrenom()}} {{user.getNom()}}
+                            </div>
+                            <div class="box_title_icon">
+                                <img src="image/icon_checklist.svg" alt="icon tchat">
+                            </div>
+                        </div>
+                    </div>
+                    <table>
+                    {% for annonce in user.getAnnonces() %}
+                        <tr>                
+                            <td onclick="window.location.href='{{ path ('annonce' , {'id' : annonce.getId()} )}}';">
+                                <div class="box_annonce">
+                                    <div class="part_image">
+                                        <!--{#{% if annonce.getImages() is not empty %}
+                                            {% for image in annonce.getImages() %}
+                                                <img src="{{ asset('/uploads/'.image.name)}}" alt="image de l'annonce">
+                                            {% endfor %}
+
+                                        {% else %}
+                                        
+                                        {% endif %}#}--> <img src="http://via.placeholder.com/640x360" alt="img placeholder">
+                                        
+                                    </div>
+                                    <div class="part_descriptif">
+                                        <div class="title_annonce">
+                                            {{annonce.getTitle()}}
+                                        </div>
+                                        <div class="description_annonce">
+                                            {{annonce.getDescription()}}
+                                        </div>
+                                    </div>
+                                    <div class="part_prix">
+                                        <div class="prix_annonce">
+                                            {{annonce.getPrice()}} €
+                                        </div>
+                                        <div class="etat_annonce">
+                                            État {{annonce.getEtat()}}
+                                        </div>
+                                        <div class="proprietaire_annonce">
+                                            <div class="image_proprietaire">
+                                                {% if user.getImage() != null %}
+                                                    <img src="/uploads/{{user.getImage().getName()}}" alt="image profil">
+                                                {% else %}
+                                                    <img src="image/icon_default_user.png" alt="image profil par défault">
+                                                {% endif %}
+                                            </div>
+                                            <div class="nom_proprietaire">
+                                                Par
+                                                <a href="{{ path ('profil' , {'id' : user.getId()} )}}"> 
+                                                    {{user.getPrenom()}} {{user.getNom()}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if app.user == user %}
+                                        <div class="bouttons_bas_droite">
+                                            <div class="boutton_solo">
+                                                <ul>
+                                                    <li id="modify_annonce">
+                                                        <a href='{{ path ('modify_annonce' , {'id' : annonce.getId()} )}}'>
+                                                            <img src="image/icon_modify.svg" alt="icon modify">
+                                                        </a>
+                                                    </li>
+                                                    <li id="delete_annonce">
+                                                        <a href='{{ path ('delete_annonce' , {'id' : annonce.getId()} )}}'>
+                                                            <img src="image/icon_delete.png" alt="icon delete">
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="boutton_bas_droite">
+                                            <div class="boutton_solo">
+                                                <ul>
+                                                    <li id="fav_annonce">
+                                                        <a href=''>
+                                                            <img src="image/icon_coeur.svg" alt="icon fav">
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                    <div class="footer_annonce">
+                        {% if app.user == user %}
+                            <div class="button_add_container">
+                                <div class="button_add">
+                                    <a href="{{ path ('addAnnonce')}}" class="btn_addAnnonce">
+                                        <img src="image/icon_add_annonce.svg" alt="boutton ajouter une annonce">
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                
+            </div>
+
+    {% endif %}
+    
+{% endblock %}

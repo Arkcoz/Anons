@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Anons{% endblock %}</title>
+        <base href="/">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="icon" type="image/png" sizes="16x16" href="image/logox16.png">
+        <link href="css/style.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+        {% block stylesheets %}{% endblock %}
+
+        {% block javascripts %}{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar">
+            <ul class="horizontal">
+                <li class="li_main">
+                    <a class="navbar-items_main" href="{{ path ('home')}}">
+                        <div class="navbar-item">
+                            <img id="main_icon" src="image/logo_transparent.png" alt="Logo du site">
+                        </div>
+                    </a>
+                </li>
+                <li class="li_second">
+                    <a class="navbar-items" href="{{ path ('addAnnonce')}}">
+                        <div class="navbar-item">
+                            <div class="navbar-icon">
+                                <img class="icon" src="image/icon_add_annonce.svg" alt="bouton ajouter annonce">
+                            </div>
+                            <div class="navbar-item-name">
+                                Déposer une annonce
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="li_second">
+                    <a class="navbar-items" href="{{ path ('searchAnnonce')}}">
+                        <div class="navbar-item">
+                            <div class="navbar-icon">
+                                <img class="icon" src="image/icon_loupe.svg" alt="bouton rechercher">
+                            </div>
+                            <div class="navbar-item-name">
+                                Rechercher
+                            </div>
+                        </div>                    
+                    </a>
+                </li>
+
+                {% if not app.user %}
+                    <li class="li_second" style="float:right">
+                        <a class="navbar-items" href="{{ path ('security_login')}}">
+                            <div class="navbar-item">
+                                <div class="navbar-icon">
+                                    <img class="icon" src="image/icon_user.svg" alt="bouton de connexion">
+                                </div>
+                                <div class="navbar-item-name">
+                                    Se connecter
+                                </div>
+                            </div>                    
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="li_second menu-deroulant" style="float:right">
+                        <a href="{{ path ('mon_profil')}}" class="navbar-item">
+                            <div class="navbar-item">
+                                <div class="navbar-icon-profil">
+                                    {% if app.user.getImage() != null %}
+                                        <img src="/uploads/{{app.user.getImage().getName()}}" alt="image profil">
+                                    {% else %}
+                                        <img src="image/icon_default_user.png" alt="image profil par défault">
+                                    {% endif %}
+                                </div>
+                                <div class="navbar-item-name">
+                                    Mon compte
+                                </div>
+                            </div>  
+                        </a>
+                        <ul class="sous-menu">
+                            <li class="li_sous_menu">
+                                <a href="{{ path ('mon_profil')}}" class="sous-menu-item"> 
+                                    <div class="sous-menu-content">
+                                        Mon profil    
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="li_sous_menu">
+                                <a href="{{ path ('mesAnnonces')}}" class="sous-menu-item">
+                                    <div class="sous-menu-content">
+                                        Mes annonces
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="li_sous_menu">
+                                <a href="{{ path ('security_logout')}}" class="sous-menu-item">
+                                    <div class="sous-menu-content">
+                                        Déconnexion
+                                    </div> 
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        
+
+        <img id="wave" src="image/wavex1920.png" alt"vague">
+
+        <div class="container">
+            {% block body %}
+                
+            {% endblock %}
+        </div>
+    </body>
+</html>

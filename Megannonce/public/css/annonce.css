@@ -1,0 +1,183 @@
+.annonce_container{
+    width: 75%;
+    color: black;
+    background-color: #CCCAE1;
+    margin: 50px auto 0 auto;
+    border-radius: 100px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: Open Sans;
+}
+
+.part_annonce{
+    display: flex;
+    flex-direction: row;
+    height: 470px;
+    padding: 20px;
+}
+
+.part_gauche{
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    text-align: center;
+}
+
+.part_gauche,.part_droite{
+    margin-top: 35px;
+}
+
+.title_annonce{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.description_annonce, .etat_annonce{
+    font-size: 28px;
+}
+
+.description_annonce{
+    margin: 30px 0;
+    width: 80%;
+    height: 200%;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.prix_annonce{
+    font-size: 45px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.photo_annonce{
+    height: 19rem;
+    width: 37rem;
+    background-color: black;
+    margin: 35px auto 0 auto;
+}
+
+.part_droite{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding-left: 42px;
+    border-left: 2px solid black;
+}
+
+.part_proprietaire{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 200px;
+    border-top: 2px solid black;
+}
+
+.proprietaire_annonce{
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.part_bas{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.boutton_contact_annonce{
+    width: 50%;
+}
+
+.location_annonce{
+    font-size: 25px;
+    color : #808080;
+}
+
+.container_date{
+    position : relative;
+    height: 100%;
+}
+
+.date_annonce{
+    font-size: 25px;
+    color : #808080;
+    position: absolute;
+    bottom:0;
+    right: 0;
+    font-weight: bold;
+}
+
+#proprietaire{
+    text-decoration: none;
+    font-style: italic;
+    color : black;
+}
+
+#proprietaire:hover{
+    color: #DD0453;
+}
+
+.div-button{
+    left: unset;
+    transform: unset;
+    position:unset;
+    top: unset;
+    height: 50px;
+}
+
+.icon_info img{
+    height: 3rem;
+    width: 3rem;
+}
+
+.tel_proprietaire, .mail_proprietaire{
+    display: flex;
+    flex-direction: row;
+}
+
+.button_annonce{
+    width: 25%;
+    margin-left: 25%;
+    margin-top: 10px;
+}
+
+.informations_proprietaire_annonce{
+    display : flex;
+    flex-direction: column;
+    width: 47%;
+    padding-left: 3%;
+    border-left: 2px solid black;
+}
+
+.envoyer-message {
+    width: 300px;
+}
+
+.btn-box-icon {
+    height: unset;
+}
+
+.btn-box-icon img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.btn-icon {
+    font-size: 26px;
+    margin: auto 0;
+}
+
+.content_tel, .content_mail{
+    font-size: 27px;
+    color : #808080;
+    margin:3px 0;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.mail_proprietaire{
+    margin-top: 7px;
+}

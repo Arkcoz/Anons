@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anons - Accueil{% endblock %}
+
+{% block stylesheets %}
+    <link href="css/home.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+
+    {% if not app.user %}
+        <h1>{{title}}</h1>
+    {% else %}
+        <h1>Bonjour {{app.user.getPrenom()}} !</h1>
+    {% endif %}
+    <div class="search_container">
+        <div class="search_title">
+            Option de recherche :
+        </div>
+    </div>
+{% endblock %}

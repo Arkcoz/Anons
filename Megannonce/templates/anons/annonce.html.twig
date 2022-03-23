@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anons - Annonce{% endblock %}
+
+{% block stylesheets %}
+    <link href="css/button.css" rel="stylesheet"/>
+    <link href="css/annonce.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div class="annonce_container">
+        <div class="part_annonce">
+            <div class="part_gauche">
+                <div class="title_annonce">
+                    {{annonce.getTitle()}}
+                </div>
+                <div class="photo_annonce">
+                    
+                </div>
+            </div>
+            <div class="part_droite">
+                <div class="prix_annonce">
+                    {{annonce.getPrice()}} €
+                </div>
+                <div class="description_annonce">
+                    {{annonce.getDescription()}}
+                </div>
+                <div class="etat_annonce">
+                    État : {{annonce.getEtat()}}
+                </div>
+                <div class="location_annonce">
+                    {{annonce.getLocation()}}
+                </div>
+                <div class="container_date">
+                    <div class="date_annonce">
+                        Ajouté le {{annonce.getCreatedAt() | date('d/m/Y')}} à {{annonce.getCreatedAt() | date('H:i')}}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="part_proprietaire">
+            <div class="part_haut">
+                <div class="proprietaire_annonce">
+                    Annonce de <a href="{{ path ('profil' , {'id' : annonce.getPersonne().getId()} )}}" id="proprietaire">{{annonce.getPersonne().getPrenom()}} {{annonce.getPersonne().getNom()}}</a>
+                </div>
+                <div class="fav_report_annonce">
+                   
+                </div>
+            </div>
+            <div class="part_bas">
+                <div class="button_annonce">
+                    <div class="div-button envoyer-message">
+                        <a class="btn-icon" href="{{ path ('modify_profil')}}">
+                            <div class="btn-box-icon envoyer-message">
+                                <img src="image/icon_tchat.svg" alt="icon tchat">
+                                <div class="btn-content">
+                                    Envoyer un message
+                                </div> 
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="informations_proprietaire_annonce">
+                    <div class="tel_proprietaire">
+                        <div class="icon_info">
+                            <img src="image/icon_phone.svg" alt="icon phone">
+                        </div>
+                        <div class="content_tel">
+                            0{{annonce.getPersonne().getPhone()}}
+                        </div>
+                    </div>
+                    <div class="mail_proprietaire">
+                        <div class="icon_info">
+                            <img src="image/icon_email.svg" alt="icon email">
+                        </div>
+                        <div class="content_mail">
+                            {{annonce.getPersonne().getEmail()}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

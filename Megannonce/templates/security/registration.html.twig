@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Anons - Inscription{% endblock %}
+
+{% block stylesheets %}
+    <link href="css/button.css" rel="stylesheet"/>
+    <link href="css/registration.css" rel="stylesheet"/>
+    <link href="css/password.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+{% endblock %}
+
+
+{% block body %}
+    <h1>{{title}}</h1>
+    <div class="formulaire">
+        {{form_start(form)}}
+        <div id="first_part_form" class="part_form">
+            
+            <!-- EMAIL -->
+            <p>{{form_label(form.email)}}</p>
+            {{form_errors(form.email)}}
+            {{form_widget(form.email)}}
+            
+            <!-- MOT DE PASSE -->
+            <div class="formField passwordField">
+                <div class="passwordLabel">
+                    Mot de passe 
+                    <div class="tooltip">
+                        <img class="icon_help" src="/image/icon_help.png" alt="help">
+                        <span class="tooltiptext">
+                            Un mot de passe doit contenir : 
+                            <ul class="tooltip_liste">
+                                <li>Au moins 12 caractères</li>
+                                <li>Au moins 1 chiffre</li>
+                                <li>Au moins 1 majuscule</li>
+                                <li>Au moins 1 minuscule</li>
+                                <li>Pas de caractère spécial</li>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+                {{form_errors(form.password)}}
+                {{form_widget(form.password)}}
+                <i class="bi bi-eye-slash" id="togglePassword"></i>
+            </div>
+            
+            <!-- MOT DE PASSE VERIFICATION -->
+            <div class="formField passwordField">
+                <div class="passwordLabel">
+                    Confirmer le mot de passe
+                    <div class="tooltip">
+                        <img class="icon_help" src="/image/icon_help.png" alt="help">
+                        <span class="tooltiptext">
+                            Un mot de passe doit contenir : 
+                            <ul class="tooltip_liste">
+                                <li>Au moins 12 caractères</li>
+                                <li>Au moins 1 chiffre</li>
+                                <li>Au moins 1 majuscule</li>
+                                <li>Au moins 1 minuscule</li>
+                                <li>Pas de caractère spécial</li>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+                {{form_errors(form.confirm_password)}}
+                {{form_widget(form.confirm_password)}}
+                <i class="bi bi-eye-slash" id="togglePassword_confirm"></i>
+            </div>
+        
+            <div class="btn-box">
+                <button type="button" id="next" onclick="goNext()" class="btn">Suivant !</button>
+            </div>
+        </div>
+        
+
+
+        <div id="second_part_form" class="part_form">
+            {{form_label(form.nom)}}</p>
+            {{form_errors(form.nom)}}
+            {{form_widget(form.nom)}}
+
+            <p>{{form_label(form.prenom)}}</p>
+            {{form_errors(form.prenom)}}
+            {{form_widget(form.prenom)}}
+
+            <p>{{form_label(form.phone)}}</p>
+            {{form_errors(form.phone)}}
+            {{form_widget(form.phone)}}
+            {{form_widget(form.image)}}
+            <div class="btn-box">
+                <button type="button" id="previous" onclick="goPrevious()" class="btn">Avant !</button>
+            </div>
+            <div class="btn-box">
+                <button type="submit" id="register" class="btn btn-success">Inscription !</button>
+            </div>
+        </div>
+    
+        
+        
+        
+        {{form_end(form)}}
+        
+        <script type="text/javascript" src="js/password.js"></script>
+        <script type="text/javascript" src="js/slide_part.js"></script>
+        <script type="text/javascript" src="js/placeholder_register_form.js"></script>
+        <script>
+            function goNext(){
+                document.getElementById("first_part_form").style.zIndex = "-500";
+                document.getElementById("second_part_form").style.zIndex = "500";
+            }
+
+            function goPrevious(){
+                document.getElementById("first_part_form").style.zIndex = "500";
+                document.getElementById("second_part_form").style.zIndex = "-500";
+            }
+        </script>
+    </div>
+{% endblock %}

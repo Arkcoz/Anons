@@ -1,0 +1,171 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body{
+    background-color: #E6E6E6;
+}
+
+#main_icon{
+    height: 5rem;
+    width: 5rem;
+    padding: 1rem 1rem 0 1rem;
+}
+
+.icon{
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 1rem 1rem 0 1rem;
+}
+
+.navbar-icon-profil img{
+    border: white 1px solid;
+    border-radius: 50%;
+    height:3rem;
+    width: 3rem;
+    object-fit: cover;
+}
+
+.navbar-icon-profil{
+    padding: 1rem 1rem 0 1rem;
+}
+
+.navbar-item-name{
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-style: Open Sans;
+    color: black;
+    font-style: Open Sans;
+}
+
+.navbar-items{
+    width: 8rem;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-style: Open Sans;
+}
+
+.navbar-container li{
+    float: left;
+    background-color: #A4A0DA;
+}
+
+h1{
+    text-align: center;
+    font-size: 80px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#wave{
+    width: 100%;
+    height: 3rem;
+}
+
+ul.horizontal{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #A4A0DA;
+    height: 7rem;
+}
+
+.li_second, .li_main{
+    float: left;
+    width: 8rem;
+    height: 8rem;
+}
+
+
+
+ul.horizontal li:hover{
+    background-color:#C3C0E5;
+    transition : all 0.3s ease-in-out;
+}
+
+ul.horizontal li.li_main:hover{
+    background-color: none;
+}
+
+ul.horizontal li a{
+    display: inline-block;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    height: inherit;
+    width: inherit;
+}
+
+
+.menu-deroulant .navbar-item{
+    height: 112px;
+}
+
+.horizontal li{
+    display: inline-block;
+    vertical-align: top;
+    
+
+}
+
+.menu-deroulant:hover .sous-menu{
+    display: block;
+    transition : all 0.3s ease-in-out;
+}
+
+.sous-menu{
+    display: none;
+    position: absolute;
+    height: 60px;
+}
+
+.horizontal li .sous-menu li{
+    padding: 0;
+}
+
+
+.menu-deroulant a{
+    width:8em;
+}
+
+.sous-menu-item{
+    padding: 0;
+    background-color: #D7D5EC;
+    height: 60px;
+    width: 100%;
+}
+
+.sous-menu-item:hover{
+    background-color: #E3E2EE;
+}
+
+.li_sous_menu{
+    height: 60px;
+    text-align: center;
+    width: 8rem;
+}
+
+.li_main:hover{
+    background-color: initial;
+}
+
+
+ul.horizontal li:first-child:hover{ 
+    background-color:inherit; 
+}
+
+.sous-menu-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 8rem;
+    height: 100%;
+}
+
+input:focus{
+    border: 2px #DD0453 solid;
+}

@@ -1,0 +1,104 @@
+.btn{
+    padding: 10px;
+    background-color:#5B77CC;
+    border-radius: 15px;
+    border: #5B77CC 2px solid;
+    outline:none;
+    color: white;
+    font-weight: bold;
+    cursor:pointer;
+    font-size: 34px;
+    font-family: Open Sans;
+    width: 280px;
+}
+
+.btn:hover{
+    color: #5B77CC;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+.btn-box-icon{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    height: 100%;
+    background-color:#5B77CC;
+    color: white;
+    width: 330px;
+    border-radius: 15px;
+    border: #5B77CC 2px solid;
+}
+
+.btn-box-icon:hover{
+    background-color: white;
+    color: #5B77CC;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-icon{
+    border-radius: 15px;
+    border: 0;
+    outline:none;
+    font-weight: bold;
+    cursor:pointer;
+    font-size: 34px;
+    text-decoration: none;
+    width: 330px;
+}
+
+
+.btn-box-icon img{
+    width: 3rem;
+    height: 3rem;
+    filter: contrast(300%); 
+}
+
+.btn-content{
+    width: 100%;
+    font-family: Open Sans;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.div-global{
+    position:absolute;
+    top : 65%;
+}
+
+.div-button{
+    left: 50%;
+    transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+    position:absolute;
+    top : 66%;
+}
+
+.envoyer-message{
+    width: 390px;
+}
+
+.sauvegarder{
+    width: 300px;
+}
+
+.modifier-profil:hover, .sauvegarder:hover{
+    border: black 3px solid;
+    transition: all 0.3 ease-in-out;
+}
+
+.creer-compte{
+    width: 280px;
+}
+
+.btn-content-simple{
+    margin-left: 0px;
+}
+
+.button-save{
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: 34px;
+}

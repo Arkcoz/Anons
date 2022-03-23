@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if app.user == user %}
+        Anons - Modification Profil
+    {% else %}
+        Anons - {{user.getPrenom()}} {{user.getNom()}} 
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="css/button.css" rel="stylesheet"/>
+    <link href="css/modify_profil.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <h1>{{title}}</h1>
+    <div class="cadre">
+        <div class="formulaire">
+            <div class="part_one">
+                {{form_start(form)}}
+                {% if user.getImage() != null %}
+                    <img src="/uploads/{{user.getImage().getName()}}" alt="image profil">
+                {% else %}
+                    <img src="image/icon_default_user.png" alt="image profil par défault">
+                {% endif %}
+                {{form_widget(form.image)}}
+            </div>
+            <div class="part_two">
+                <div class="label">
+                    Prénom
+                </div>
+                {{form_widget(form.prenom)}}
+                
+                <div class="label">
+                    Nom
+                </div>
+                {{form_widget(form.nom)}}
+                
+                <div class="label">
+                    Email
+                </div>
+                {{form_widget(form.email)}}
+                
+                <div class="label">
+                    Téléphone
+                </div>
+                {{form_widget(form.phone)}}     
+         
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-box">
+        <button type="submit" id="modify" class="button-save btn-success">
+            <div class="btn-box-icon sauvegarder">
+                <img src="image/icon_check.svg" alt="icon save">
+                <div class="btn-content">
+                    Sauvegarder !
+                </div>
+            </div>
+            
+            
+        </button>
+    </div>
+
+    {{form_end(form)}}
+    
+    <script src="./node_modules/telInput/src/js/intlTelInput.js"></script>
+    <script src="./test.js"></script>
+    <script type="text/javascript" src="js/phone.js"></script>
+{% endblock %}
