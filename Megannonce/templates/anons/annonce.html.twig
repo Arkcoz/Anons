@@ -51,14 +51,25 @@
             <div class="part_bas">
                 <div class="button_annonce">
                     <div class="div-button envoyer-message">
-                        <a class="btn-icon" href="{{ path ('modify_profil')}}">
-                            <div class="btn-box-icon envoyer-message">
-                                <img src="image/icon_tchat.svg" alt="icon tchat">
-                                <div class="btn-content">
-                                    Envoyer un message
-                                </div> 
-                            </div>
-                        </a>
+                        {% if annonce.getPersonne() == app.user %}
+                            <a  href='{{ path ('modify_annonce' , {'id' : annonce.getId()} )}}' class="btn-icon">
+                                <div class="btn-box-icon envoyer-message">
+                                    <img src="image/icon_modify.svg" alt="icon modify">
+                                    <div class="btn-content">
+                                        Modifier l'annonce
+                                    </div> 
+                                </div>
+                            </a>
+                        {% else %}
+                            <a class="btn-icon">
+                                <div class="btn-box-icon envoyer-message">
+                                    <img src="image/icon_tchat.svg" alt="icon tchat">
+                                    <div class="btn-content">
+                                        Envoyer un message
+                                    </div> 
+                                </div>
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="informations_proprietaire_annonce">

@@ -7,6 +7,8 @@ use App\Entity\Annonce;
 use App\Entity\Personne;
 use App\Form\ModifyType;
 use App\Form\AddAnnoncesType;
+use App\Form\SearchAnnonceType;
+use App\Repository\AnnonceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +16,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AnonsController extends AbstractController
 {
@@ -31,10 +34,13 @@ class AnonsController extends AbstractController
     }
 
     #[Route('/', name :"home")]
-    public function home(){
+    public function home(Request $request){
+
+
         //renvoie la page
         return $this->render('anons/home.html.twig', [
             'title' => "Bienvenue sur Anons !",
+            
         ]);
     }
 
@@ -94,10 +100,28 @@ class AnonsController extends AbstractController
 
     
     #[Route('/rechercher_annonce', name :"searchAnnonce")]
-    public function searchAnnonce(){
+    public function searchAnnonce(AnnonceRepository $annoncesRepo, Request $request){
+
+        $annonces = $annoncesRepo-> findAll();
+
+        $form = $this->createForm(SearchAnnonceType::class);
+
+        $search = $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            //On recherche les annonces correspondant aux mots clés 
+            $annonces = $annoncesRepo->search(
+                $search->get('mots')->getData(),
+                $search->get('price')->getData(),
+                $search->get('category')->getData(),
+                $search->get('location')->getData()
+            );
+        }
+
         //renvoie la page
         return $this->render('anons/searchAnnonce.html.twig', [
-            
+            'form' => $form->createView(),
+            'annonces' => $annonces
         ]);
     }
 
@@ -214,7 +238,7 @@ class AnonsController extends AbstractController
         ]);
     }
 
-    #[Route('/erreur_404', name :"error")]
+    #[Route('/test/erreur_404', name :"error")]
     public function show_error(): Response{
         
         
@@ -247,6 +271,13 @@ class AnonsController extends AbstractController
 
         return $this->redirectToRoute('mon_profil');
         
+    }
+    
+    #[Route('/favorie/{id}', name :"favorie")]
+    public function favorie($id): Response{
+        
+        //Pas encore coder
+        return $this->redirectToRoute('error');
     }
 
 }

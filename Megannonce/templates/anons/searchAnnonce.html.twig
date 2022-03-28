@@ -1,1 +1,148 @@
 {% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="css/button.css" rel="stylesheet"/>
+    <link href="css/profil.css" rel="stylesheet"/>
+    <link href="css/searchAnnonce.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <h1> Rechercher une annonce </h1>
+
+    
+
+    <div class="cadre_annonces">
+        <div class="header_annonces">
+            <div class="box_title_annonce">
+                <div class="box_title_content">
+                    <!-- Parametre de recherche -->
+                    {{ form(form) }}
+                </div>
+                <div class="box_title_icon">
+                    
+                </div>
+            </div>
+        </div>
+        <table>
+        {% if annonces is not empty %} 
+        
+            {% for annonce in annonces %}
+                <tr>                
+                    <td>
+                        <div class="box_annonce">
+                            <div class="part_image">
+                                <!--{#{% if annonce.getImages() is not empty %}
+                                    {% for image in annonce.getImages() %}
+                                        <img src="{{ asset('/uploads/'.image.name)}}" alt="image de l'annonce">
+                                    {% endfor %}
+
+                                {% else %}
+                                
+                                {% endif %}#}--> <img src="http://via.placeholder.com/640x360" alt="img placeholder">
+                                
+                            </div>
+                            <div class="part_descriptif" onclick="window.location.href='{{ path ('annonce' , {'id' : annonce.getId()} )}}';">
+                                <div class="title_annonce">
+                                    {{annonce.getTitle()}}
+                                </div>
+                                <div class="description_annonce">
+                                    {{annonce.getDescription()}}
+                                </div>
+                                <div class="category_annonce">
+                                    <div class="icon_field">
+                                        <img src="image/icon_category.svg" alt="icon category">
+                                    </div>
+                                    <div class="content_field">
+                                        {{annonce.getCategory()}}
+                                    </div>
+                                </div>
+                                <div class="location_annonce">
+                                    <div class="icon_field">
+                                        <img src="image/icon_location.svg" alt="icon location">
+                                    </div>
+                                    <div class="content_field">
+                                        {{annonce.getLocation()}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="part_prix">
+                                <div class="prix_annonce">
+                                    {{annonce.getPrice()}} €
+                                </div>
+                                <div class="etat_annonce">
+                                    État {{annonce.getEtat()}}
+                                </div>
+                                <div class="proprietaire_annonce">
+                                    <div class="image_proprietaire">
+                                        {% if annonce.getPersonne().getImage() != null %}
+                                            <img src="/uploads/{{annonce.getPersonne().getImage().getName()}}" alt="image profil">
+                                        {% else %}
+                                            <img src="image/icon_default_user.png" alt="image profil par défault">
+                                        {% endif %}
+                                    </div>
+                                    <div class="nom_proprietaire">
+                                        Par
+                                        <a href="{{ path ('profil' , {'id' : annonce.getPersonne().getId()} )}}"> 
+                                            {{annonce.getPersonne().getPrenom()}} {{annonce.getPersonne().getNom()}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if app.user %}
+                                {% if app.user != annonce.getPersonne() %}
+                                    <!-- Affichage du boutton j'aime -->
+                                    <div class="boutton_bas_droite">
+                                        <div class="boutton_solo">
+                                            <ul>
+                                                <li id="fav_annonce">
+                                                    {% for favoris in annonce.getPersonnesFavories() %}
+                                                        {% if favoris.getId() == app.user.id %}
+                                                            <div class="placement">
+                                                                <a class="heart is-active"></a>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="placement">
+                                                                <a class="heart"></a>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        <div class="placement">
+                                                            <a href="{{ path ('favorie',{'id': annonce.getId() })}}" class="heart"></a>
+                                                        </div>
+                                                    {% endfor %}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <!-- On affiche pas le boutton j'aime car c'est son annonce -->
+                                    <div class="boutton_bas_droite">
+                                    </div>
+                                {% endif %}
+                            {% else %}
+                                <!-- On affiche pas le boutton j'aime car il est pas connecté -->
+                                <div class="boutton_bas_droite">
+                                </div>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        {% else %}
+            <tr>                
+                <td>
+                    <div class="box_annonce">
+                        Il n'y a pas d'annonce correspondant à votre recherche
+                    </div>
+                </td>
+            </tr>
+        {% endif %}
+        </table>
+        <div class="footer_annonce">
+            
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/favorite.js"></script>
+{% endblock %}

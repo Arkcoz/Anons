@@ -56,11 +56,15 @@ class Personne implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'personne', targetEntity: Annonce::class, orphanRemoval: true)]
     private $annonces;
 
+    #[ORM\ManyToMany(targetEntity: Annonce::class, inversedBy: 'personnes_favories')]
+    private $favories;
+
 
     public function __construct()
     {
         $this->isAdmin = false;
         $this->annonces = new ArrayCollection();
+        $this->favories = new ArrayCollection();
 
     }
 
@@ -290,6 +294,30 @@ class Personne implements UserInterface, PasswordAuthenticatedUserInterface
                 $annonce->setPersonne(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getFavories(): Collection
+    {
+        return $this->favories;
+    }
+
+    public function addFavories(Annonce $favories): self
+    {
+        if (!$this->favories->contains($favories)) {
+            $this->favories[] = $favories;
+        }
+
+        return $this;
+    }
+
+    public function removeFavories(Annonce $favories): self
+    {
+        $this->favories->removeElement($favories);
 
         return $this;
     }

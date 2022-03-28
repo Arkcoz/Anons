@@ -4,6 +4,7 @@
 {% block title %}Anons - Mes Annonces{% endblock %}
 
 {% block stylesheets %}
+    <link href="css/button.css" rel="stylesheet"/>
     <link href="css/profil.css" rel="stylesheet"/>
 {% endblock %}
 
@@ -69,7 +70,7 @@
                             </div>
 
                             <div class="bouttons_bas_droite">
-                                <div class="button_solo">
+                                <div class="boutton_solo">
                                     <ul>
                                         <li id="modify_annonce">
                                             <a href='{{ path ('modify_annonce' , {'id' : annonce.getId()} )}}'>

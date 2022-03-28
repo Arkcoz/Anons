@@ -155,7 +155,6 @@ h1{
 .part_descriptif{
     width: 35%;
     padding: 20px 0;
-    margin: auto 0;
     height: 65%;
 }
 
@@ -172,7 +171,7 @@ h1{
 .proprietaire_annonce{
     display: flex;
     flex-direction: row;
-    margin-top: 10%;
+    margin-top: 15%;
 }
 
 .image_proprietaire img{
@@ -197,7 +196,29 @@ h1{
 }
 
 .description_annonce{
+    height: 8rem;
     font-size: 28px;
+}
+
+.icon_field{
+    height: 2rem;
+    width: 2rem;
+}
+
+.category_annonce, .location_annonce{
+    font-size: 23px;
+    display: flex;
+    flex-direction: row;
+    height: 2rem;
+}
+
+.location_annonce{
+    margin-top: 5px;
+}
+
+.content_field{
+    margin: auto 0;
+    padding-left: 5px;
 }
 
 .prix_annonce{
@@ -215,6 +236,8 @@ h1{
 .nom_proprietaire{
     margin: auto 0 auto 20px;
     font-size: 32px;
+    max-width: 330px;
+    font-family: Open Sans;
 }
 
 .nom_proprietaire a {
@@ -275,7 +298,7 @@ tr:hover{
 .bouttons_bas_droite{
     position: relative;
     width: 6.5rem;
-    margin: 10px;
+    margin: 0 10px 10px 0;
 }
 
 .boutton_solo{
@@ -308,12 +331,7 @@ tr:hover{
     display: inline-block;
 }
 
-.boutton_solo li a:hover{
-    background-color: #DD0453;
-    height: 2.5rem;
-    width: 2.5rem;
-    border-radius: 50%;
-}
+
 
 .description_annonce{
     padding: 0 10px 0 0;
@@ -323,4 +341,12 @@ tr:hover{
     position: relative;
     width: 3.5rem;
     margin: 10px;
+}
+
+i {
+    cursor: pointer;
+}
+
+.heart{
+    z-index:1;
 }

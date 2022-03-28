@@ -7,7 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AnnonceRepository::class)]
+#[
+    ORM\Entity(repositoryClass: AnnonceRepository::class),
+    ORM\Table(name:"annonce"),
+    ORM\Index(columns:["title","description"], flags:['fulltext']),
+]
+
 class Annonce
 {
     #[ORM\Id]
@@ -46,11 +51,15 @@ class Annonce
     #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Images::class, cascade: ['persist', 'remove'])]
     private $images;
 
+    #[ORM\ManyToMany(targetEntity: Personne::class, mappedBy: 'favories')]
+    private $personnes_favories;
+
 
 
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->personnes_favories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -191,6 +200,33 @@ class Annonce
             if ($image->getAnnonce() === $this) {
                 $image->setAnnonce(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Personne[]
+     */
+    public function getPersonnesFavories(): Collection
+    {
+        return $this->personnes_favories;
+    }
+
+    public function addPersonnesFavories(Personne $personnesFavories): self
+    {
+        if (!$this->personnes_favories->contains($personnesFavories)) {
+            $this->personnes_favories[] = $personnesFavories;
+            $personnesFavories->addFavories($this);
+        }
+
+        return $this;
+    }
+
+    public function removePersonnesFavories(Personne $personnesFavories): self
+    {
+        if ($this->personnes_favories->removeElement($personnesFavories)) {
+            $personnesFavories->removeFavories($this);
         }
 
         return $this;

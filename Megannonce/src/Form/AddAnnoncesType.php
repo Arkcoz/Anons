@@ -16,8 +16,27 @@ class AddAnnoncesType extends AbstractType
         $builder
             ->add('title')
             ->add('price')
-            ->add('location')
-            ->add('category')
+            ->add('location', ChoiceType::class, [
+                'choices'  => [
+                    'Allemagne' => 'Allemagne',
+                    'Belgique' => 'Belgique',
+                    'France' => 'France',
+                    'Suisse' => 'Suisse',
+                    'Italie' => 'Italie',
+                    'Portugal' => 'Portugal',
+                    'Espagne' => 'Espagne'
+                ]
+            ])
+            ->add('category',ChoiceType::class, [
+                'choices'  => [
+                    'Voiture' => 'Voiture',
+                    'Vétement' => 'Vêtement',
+                    'Jeux Vidéo' => 'Jeux Vidéo',
+                    'Carte' => 'Carte',
+                    'Instrument' => 'Instrument',
+                    'Animal' => 'Animal',
+                ]
+            ])
             ->add('description')
             ->add('etat', ChoiceType::class, [
                 'choices'  => [
