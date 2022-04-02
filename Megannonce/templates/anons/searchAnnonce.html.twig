@@ -16,7 +16,12 @@
             <div class="box_title_annonce">
                 <div class="box_title_content">
                     <!-- Parametre de recherche -->
-                    {{ form(form) }}
+                    {{form_start(form)}}
+                        {{form_widget(form.mots)}}
+                        {{form_widget(form.price)}}
+                        {{form_widget(form.category)}}
+                        {{form_widget(form.location)}}
+                    {{form_end(form)}}
                 </div>
                 <div class="box_title_icon">
                     

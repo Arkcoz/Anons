@@ -20,7 +20,7 @@ class SearchAnnonceType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'Entrez un ou plusieurs mots-clées'
                 ],
-                'required' => false
+                'required' => false,
             ])
 
             ->add('price', SearchType::class,[

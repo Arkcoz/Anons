@@ -1,23 +1,30 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link href="css/addAnnonce.css" rel="stylesheet"/>
+{% endblock %}
+
+
 {% block body %}
     <h1>{{title}}</h1>
+    <div class="formulaireAdd">
+        {{form_start(form)}}
 
-    {{form_start(form)}}
+            {{form_row(form.title)}}
+            {{form_row(form.price)}}
+            {{form_row(form.location)}}
+            {{form_row(form.category)}}
+            {{form_row(form.description)}}
+            {{form_row(form.etat)}}
+            {{form_row(form.images)}}
 
-    {{form_row(form.title)}}
-    {{form_row(form.price)}}
-    {{form_row(form.location)}}
-    {{form_row(form.category)}}
-    {{form_row(form.description)}}
-    {{form_row(form.etat)}}
-    {{form_row(form.images)}}
+            <div class="btn-box">
+                <button type="submit" id="register" class="btn btn-success">Inscription !</button>
+            </div>
 
-    <div class="btn-box">
-        <button type="submit" id="register" class="btn btn-success">Inscription !</button>
+        {{form_end(form)}}
     </div>
-
-    {{form_end(form)}}
+    
 
 
 {% endblock %}
